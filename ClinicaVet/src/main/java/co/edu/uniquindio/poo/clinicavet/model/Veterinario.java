@@ -13,6 +13,7 @@ public class Veterinario extends Persona {
 
     }
 
+
     public Especialidad getEspecialidad() {
         return especialidad;
     }

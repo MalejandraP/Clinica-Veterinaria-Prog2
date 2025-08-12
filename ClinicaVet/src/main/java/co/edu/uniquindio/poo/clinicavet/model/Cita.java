@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cita {
+    private String id;
     private LocalDate fecha;
     private String horaInicial;
     private String horaFinal;
@@ -13,7 +14,8 @@ public class Cita {
     private Veterinario veterinario;
     private List<Consulta> listConsultas;
 
-    public Cita(LocalDate fecha, String horaInicial, String horaFinal, Sede sede, String consultorio, Veterinario veterinario) {
+    public Cita(String id, LocalDate fecha, String horaInicial, String horaFinal, Sede sede, String consultorio, Veterinario veterinario) {
+        this.id = id;
         this.fecha = fecha;
         this.horaInicial = horaInicial;
         this.horaFinal = horaFinal;
@@ -22,6 +24,14 @@ public class Cita {
         this.listConsultas = new ArrayList<>();
         this.veterinario = veterinario;
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public LocalDate getFecha() {

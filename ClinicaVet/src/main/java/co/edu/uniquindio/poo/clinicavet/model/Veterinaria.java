@@ -13,7 +13,6 @@ public class Veterinaria {
     private List<Secretaria> listSecretarias;
     private List<Aseo> listAseos;
     private List<Cita> listCitas;
-    private List<Personal> listPersonales;
     private List<Consulta> listConsultas;
 
     public Veterinaria(String nombre, String direccion, Sede sede) {
@@ -26,9 +25,323 @@ public class Veterinaria {
         this.listSecretarias = new ArrayList<>();
         this.listAseos = new ArrayList<>();
         this.listCitas = new ArrayList<>();
-        this.listPersonales = new ArrayList<>();
         this.listConsultas = new ArrayList<>();
     }
+
+    public boolean verificarPropietario(String id){
+        boolean centinela=false;
+        for (Propietario propietario : listPropietarios){
+            if(propietario.getId().equals(id)){
+                centinela=true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean verificarMascota(String id){
+        boolean centinela=false;
+        for (Mascota mascota : listMascotas){
+            if(mascota.getId().equals(id)){
+                centinela=true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean verificarVeterinario(String id){
+        boolean centinela=false;
+        for (Veterinario veterinario : listVeterinarios){
+            if(veterinario.getId().equals(id)){
+                centinela=true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean verificarSecretaria(String id){
+        boolean centinela=false;
+        for (Secretaria secretaria : listSecretarias){
+            if(secretaria.getId().equals(id)){
+                centinela=true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean verificarAseo(String id){
+        boolean centinela=false;
+        for (Aseo aseo : listAseos){
+            if(aseo.getId().equals(id)){
+                centinela=true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean verificarConsulta(String id){
+        boolean centinela=false;
+        for (Consulta consulta : listConsultas){
+            if(consulta.getId().equals(id)){
+                centinela=true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean verificarCita(String id){
+        boolean centinela=false;
+        for (Cita cita : listCitas){
+            if(cita.getId().equals(id)){
+                centinela=true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean eliminarPropietario(String id){
+        boolean centinela = false;
+        for (Propietario propietario : listPropietarios){
+            if(propietario.getId().equals(id)){
+                listPropietarios.remove(propietario);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean eliminarMascota(String id){
+        boolean centinela = false;
+        for (Mascota mascota : listMascotas){
+            if(mascota.getId().equals(id)){
+                listMascotas.remove(mascota);
+                centinela = true;
+                break;
+            }
+
+        }
+        return centinela;
+    }
+
+    public boolean eliminarVeterinario(String id){
+        boolean centinela = false;
+        for (Veterinario veterinario : listVeterinarios){
+            if(veterinario.getId().equals(id)){
+                listVeterinarios.remove(veterinario);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean eliminarSecretaria(String id){
+        boolean centinela = false;
+        for (Secretaria secretaria : listSecretarias){
+            if(secretaria.getId().equals(id)){
+                listSecretarias.remove(secretaria);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean eliminarAseo(String id){
+        boolean centinela = false;
+        for(Aseo aseo : listAseos){
+            if(aseo.getId().equals(id)){
+                listAseos.remove(aseo);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean eliminarCita(String id){
+        boolean centinela = false;
+        for(Cita cita : listCitas){
+            if(cita.getId().equals(id)){
+                listCitas.remove(cita);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean eliminarConsulta(String id){
+        boolean centinela= false;
+        for(Consulta consulta : listConsultas){
+            if(consulta.getId().equals(id)){
+                listConsultas.remove(consulta);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+
+    }
+
+    public boolean agregarPropietario(Propietario propietario){
+        boolean centinela = false;
+        for (Propietario p: listPropietarios){
+            if(!verificarPropietario(propietario.getId())){
+                listPropietarios.add(p);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean agregarMascota(Mascota mascota){
+        boolean centinela = false;
+        for (Mascota m: listMascotas){
+            if(!verificarMascota(m.getId())){
+                listMascotas.add(m);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean agregarVeterinario(Veterinario veterinario){
+        boolean centinela = false;
+        for (Veterinario v: listVeterinarios){
+            if(!verificarVeterinario(v.getId())){
+                listVeterinarios.add(v);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean agregarSecretaria(Secretaria secretaria){
+        boolean centinela = false;
+        for (Secretaria s: listSecretarias){
+            if(!verificarSecretaria(s.getId())){
+                listSecretarias.add(s);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean agregarAseo(Aseo aseo){
+        boolean centinela = false;
+        for (Aseo as: listAseos){
+            if(!verificarAseo(aseo.getId())){
+                listAseos.add(as);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public  boolean agregarCita(Cita cita){
+        boolean centinela = false;
+        for (Cita c: listCitas){
+            if(!verificarCita(cita.getId())){
+                listCitas.add(c);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean agregarConsulta(Consulta consulta){
+        boolean centinela = false;
+        for (Consulta co: listConsultas){
+            if(!verificarConsulta(consulta.getId())){
+                listConsultas.add(co);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean actualizarPropietario(String id, Propietario actualizado){
+        boolean centinela = false;
+        for (Propietario p: listPropietarios){
+            if(p.getId().equals(id)) {
+                p.setNombre(actualizado.getNombre());
+                p.setId(actualizado.getId());
+                p.setTelefono(actualizado.getTelefono());
+                p.setDireccion(actualizado.getDireccion());
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+
+    }
+
+    public boolean actualizarMascota(String id, Mascota actualizado){
+        boolean centinela = false;
+        for (Mascota a: listMascotas){
+            if(a.getId().equals(id)) {
+                a.setNombre(actualizado.getNombre());
+                a.setRaza(actualizado.getRaza());
+                a.setEdad(actualizado.getEdad());
+                a.setId(actualizado.getId());
+                a.setEspecie(actualizado.getEspecie());
+                a.setPropietario(actualizado.getPropietario());
+                centinela= true;
+                break;
+
+            }
+        }
+        return centinela;
+    }
+
+    public boolean actualizarVeterinario(String id, Veterinario actualizado){
+        boolean centinela = false;
+        for (Veterinario v: listVeterinarios){
+            if(v.getId().equals(id)) {
+                v.setNombre(actualizado.getNombre());
+                v.setId(actualizado.getId());
+                v.setLicencia(actualizado.getLicencia());
+                v.setEstado(actualizado.isEstado());
+                v.setEspecialidad(actualizado.getEspecialidad());
+                centinela= true;
+                break;
+
+            }
+        }
+        return centinela;
+    }
+
+    public boolean actualizarSecretaria(String id, Secretaria actualizado){
+        boolean centinela = false;
+        for (Secretaria s: listSecretarias){
+            if(s.getId().equals(id)) {
+                s.setNombre(actualizado.getNombre());
+                s.setId(actualizado.getId());
+                s.setSalario(actualizado.getSalario());
+                s.setExperiencia(actualizado.getExperiencia());
+                centinela= true;
+                break;
+
+            }
+        }
+        return centinela;
+    }
+
 
     public List<Consulta> getListConsultas() {
         return listConsultas;
@@ -104,11 +417,5 @@ public class Veterinaria {
         this.listCitas = listCitas;
     }
 
-    public List<Personal> getListPersonales() {
-        return listPersonales;
-    }
 
-    public void setListPersonales(List<Personal> listPersonales) {
-        this.listPersonales = listPersonales;
-    }
 }

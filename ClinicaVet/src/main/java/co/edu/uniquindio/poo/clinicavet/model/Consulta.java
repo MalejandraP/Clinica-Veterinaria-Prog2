@@ -5,19 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Consulta {
+    private String id;
     private LocalDate fecha;
     private String hora;
     private String motivo;
     private String diagnostico;
     private List<Tratamiento> listtratamientos;
 
-    public Consulta(LocalDate fecha, String hora, String motivo, String diagnostico) {
+    public Consulta(String id, LocalDate fecha, String hora, String motivo, String diagnostico) {
+        this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.motivo = motivo;
         this.diagnostico = diagnostico;
         this.listtratamientos = new ArrayList<>();
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public LocalDate getFecha() {
