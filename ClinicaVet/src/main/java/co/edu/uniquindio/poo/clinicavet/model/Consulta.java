@@ -10,16 +10,26 @@ public class Consulta {
     private String hora;
     private String motivo;
     private String diagnostico;
+    private Veterinario veterinario;
     private List<Tratamiento> listtratamientos;
 
-    public Consulta(String id, LocalDate fecha, String hora, String motivo, String diagnostico) {
+    public Consulta(String id, LocalDate fecha, String hora, String motivo, String diagnostico, Veterinario veterinario) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.motivo = motivo;
         this.diagnostico = diagnostico;
+        this.veterinario = veterinario;
         this.listtratamientos = new ArrayList<>();
 
+    }
+
+    public Veterinario getVeterinario() {
+        return veterinario;
+    }
+
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
     }
 
     public String getId() {

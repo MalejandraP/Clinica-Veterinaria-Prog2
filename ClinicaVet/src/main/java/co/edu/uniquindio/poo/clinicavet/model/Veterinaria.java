@@ -326,6 +326,7 @@ public class Veterinaria {
         return centinela;
     }
 
+
     public boolean actualizarSecretaria(String id, Secretaria actualizado){
         boolean centinela = false;
         for (Secretaria s: listSecretarias){
@@ -340,6 +341,155 @@ public class Veterinaria {
             }
         }
         return centinela;
+    }
+    public boolean actualizarAseo(String id, Aseo actualizado){
+        boolean centinela = false;
+        for (Aseo as: listAseos){
+            if(as.getId().equals(id)) {
+                as.setNombre(actualizado.getNombre());
+                as.setId(actualizado.getId());
+                as.setSalario(actualizado.getSalario());
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean actualizarCita(String id, Cita actualizado){
+        boolean centinela = false;
+        for (Cita c: listCitas){
+            if(c.getId().equals(id)) {
+                c.setId(actualizado.getId());
+                c.setFecha(actualizado.getFecha());
+                c.setHoraInicial(actualizado.getHoraInicial());
+                c.setSede(actualizado.getSede());
+                c.setHoraFinal(actualizado.getHoraFinal());
+                c.setConsultorio(actualizado.getConsultorio());
+                c.setVeterinario(actualizado.getVeterinario());
+                centinela= true;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean actualizarConsulta(String id, Consulta actualizado){
+        boolean centinela = false;
+        for (Consulta a: listConsultas){
+            if(a.getId().equals(id)) {
+                a.setId(actualizado.getId());
+                a.setFecha(actualizado.getFecha());
+                a.setHora(actualizado.getHora());
+                a.setMotivo(actualizado.getMotivo());
+                a.setDiagnostico(actualizado.getDiagnostico());
+                a.setVeterinario(actualizado.getVeterinario());
+
+            }
+        }
+        return  centinela;
+    }
+
+    public Propietario buscarPropietario(String id){
+        for (Propietario p: listPropietarios){
+            if(p.getId().equals(id)){
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Mascota buscarMascota(String id){
+        for (Mascota m: listMascotas){
+            if(m.getId().equals(id)){
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public Veterinario buscarVeterinario(String id){
+        for (Veterinario v: listVeterinarios){
+            if(v.getId().equals(id)){
+                return v;
+            }
+        }
+        return null;
+    }
+
+    public Secretaria buscarSecretaria(String id){
+        for (Secretaria s: listSecretarias){
+            if(s.getId().equals(id)){
+                return s;
+            }
+        }
+        return null;
+    }
+
+    public Aseo buscarAseo(String id){
+        for (Aseo as: listAseos){
+            if(as.getId().equals(id)){
+                return as;
+            }
+        }
+        return null;
+    }
+
+    public Cita buscarCita(String id){
+        for (Cita c: listCitas){
+            if(c.getId().equals(id)){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public Consulta buscarConsulta(String id){
+        for (Consulta a: listConsultas){
+            if(a.getId().equals(id)){
+                return a;
+            }
+        }
+        return null;
+    }
+
+    public int cantidadPerros(Mascota mascota){
+        int perros=0;
+        for (Mascota m: listMascotas){
+            if(m.getEspecie().equals(Especie.PERRO)){
+                perros++;
+            }
+        }
+        return perros;
+    }
+
+    public int cantidadGatos(Mascota mascota){
+        int gatos=0;
+        for (Mascota m: listMascotas){
+            if(m.getEspecie().equals(Especie.GATO)){
+                gatos++;
+            }
+        }
+        return gatos;
+    }
+
+    public int cantidadAves(Mascota mascota){
+        int aves=0;
+        for (Mascota m: listMascotas){
+            if(m.getEspecie().equals(Especie.AVE)){
+                aves++;
+            }
+        }
+        return aves;
+    }
+
+    public int cantidadOtrasMascotas(Mascota mascota){
+        int otros=0;
+        for(Mascota m: listMascotas){
+            if(m.getEspecie().equals(Especie.OTRO)){
+                otros++;
+            }
+        }
+        return otros;
     }
 
 
