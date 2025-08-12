@@ -6,6 +6,7 @@ import java.util.List;
 public class Veterinaria {
     private String nombre;
     private String direccion;
+    private Sede sede;
     private List<Propietario> listPropietarios;
     private List<Mascota> listMascotas;
     private List<Veterinario> listVeterinarios;
@@ -15,9 +16,10 @@ public class Veterinaria {
     private List<Personal> listPersonales;
     private List<Consulta> listConsultas;
 
-    public Veterinaria(String nombre, String direccion) {
+    public Veterinaria(String nombre, String direccion, Sede sede) {
         this.nombre = nombre;
         this.direccion = direccion;
+        this.sede = sede;
         this.listPropietarios = new ArrayList<>();
         this. listMascotas = new ArrayList<>();
         this.listVeterinarios = new ArrayList<>();
@@ -36,7 +38,7 @@ public class Veterinaria {
         this.listConsultas = listConsultas;
     }
 
-    public
+
 
     public String getNombre() {
         return nombre;
