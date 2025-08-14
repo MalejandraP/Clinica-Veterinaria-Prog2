@@ -2,13 +2,11 @@ package co.edu.uniquindio.poo.clinicavet.model;
 
 public class Veterinario extends Persona {
     private String licencia;
-    private boolean estado;
     private Especialidad especialidad;
 
-    public Veterinario(String nombre, String id, String licencia, boolean estado, Especialidad especialidad) {
+    public Veterinario(String nombre, String id, String licencia, Especialidad especialidad) {
         super(nombre, id);
         this.licencia = licencia;
-        this.estado = estado;
         this.especialidad = especialidad;
 
     }
@@ -30,11 +28,5 @@ public class Veterinario extends Persona {
         this.licencia = licencia;
     }
 
-    public boolean isEstado() {
-        return estado;
-    }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
 }
