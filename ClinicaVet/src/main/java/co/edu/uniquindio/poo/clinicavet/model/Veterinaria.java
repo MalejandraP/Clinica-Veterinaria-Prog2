@@ -254,7 +254,7 @@ public class Veterinaria {
     public  boolean agregarCita(Cita cita){
         boolean centinela = false;
         for (Cita c: listCitas){
-            if(!verificarCita(cita.getId())){
+            if(!verificarCita(cita.getId()) && disponibilidadCitas(c)){
                 listCitas.add(c);
                 centinela = true;
                 break;
@@ -491,6 +491,38 @@ public class Veterinaria {
         }
         return otros;
     }
+
+    public boolean disponibilidadCitas(Cita citaNueva){
+        boolean disponibilidad= true;
+        for(Cita c: listCitas){
+            if(citaNueva.getHoraInicial().equals(c.getHoraInicial())){
+               disponibilidad =false;
+            }
+        }
+        return  disponibilidad;
+    }
+    public List<Consulta> hallarListaConsultasVeterinario(String id){
+        List<Consulta> listconsultasVeterinario = new ArrayList<>();
+        for (Consulta c: listConsultas){
+            if(c.getVeterinario().getId().equals(id)){
+                listconsultasVeterinario.add(c);
+            }
+        }
+        return listconsultasVeterinario;
+    }
+
+    public boolean disponibilidadVeterinario(Cita citaNueva, String id){
+        boolean disponibilidad= true;
+        List <Consulta> listConsultasVeterinario = hallarListaConsultasVeterinario(nombre);
+
+        for(Consulta c: listConsultasVeterinario){
+            if(c.getHora().equalsIgnoreCase(citaNueva.getHoraInicial())){
+                disponibilidad =false;
+            }
+        }
+        return  disponibilidad;
+    }
+
 
 
     public List<Consulta> getListConsultas() {

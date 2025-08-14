@@ -11,19 +11,29 @@ public class Cita {
     private String horaFinal;
     private Sede sede;
     private String consultorio;
+    private Mascota mascota;
     private Veterinario veterinario;
     private List<Consulta> listConsultas;
 
-    public Cita(String id, LocalDate fecha, String horaInicial, String horaFinal, Sede sede, String consultorio, Veterinario veterinario) {
+    public Cita(String id, LocalDate fecha, String horaInicial, String horaFinal, Sede sede, String consultorio, Mascota mascota, Veterinario veterinario) {
         this.id = id;
         this.fecha = fecha;
         this.horaInicial = horaInicial;
         this.horaFinal = horaFinal;
         this.sede = sede;
         this.consultorio = consultorio;
+        this.mascota = mascota;
         this.listConsultas = new ArrayList<>();
         this.veterinario = veterinario;
 
+    }
+
+    public Mascota getMascota() {
+        return mascota;
+    }
+
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
     }
 
     public String getId() {
