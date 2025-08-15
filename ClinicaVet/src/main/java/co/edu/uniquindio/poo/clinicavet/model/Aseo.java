@@ -7,11 +7,6 @@ public class Aseo extends Personal{
         super(nombre, id, salario);
     }
 
-    @Override
-    public String toString() {
-        return "Aseo{" +
-                "nombre='" + nombre + '\'' +
-                ", id='" + id + '\'' +
-                '}';
-    }
+
+
 }

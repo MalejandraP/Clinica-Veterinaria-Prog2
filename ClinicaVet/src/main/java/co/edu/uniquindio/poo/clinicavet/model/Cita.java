@@ -7,39 +7,23 @@ import java.util.List;
 public class Cita {
     private String id;
     private LocalDate fecha;
-    private Hora hora;
+    private String horaInicial;
+    private String horaFinal;
     private Sede sede;
     private String consultorio;
-    private Mascota mascota;
     private Veterinario veterinario;
+    private List<Consulta> listConsultas;
 
-
-    public Cita(String id, LocalDate fecha, Hora hora, Sede sede, String consultorio, Mascota mascota, Veterinario veterinario) {
+    public Cita(String id, LocalDate fecha, String horaInicial, String horaFinal, Sede sede, String consultorio, Veterinario veterinario) {
         this.id = id;
         this.fecha = fecha;
-        this.hora = hora;
+        this.horaInicial = horaInicial;
+        this.horaFinal = horaFinal;
         this.sede = sede;
         this.consultorio = consultorio;
-        this.mascota = mascota;
-
+        this.listConsultas = new ArrayList<>();
         this.veterinario = veterinario;
 
-    }
-
-    public Hora getHora() {
-        return hora;
-    }
-
-    public void setHora(Hora hora) {
-        this.hora = hora;
-    }
-
-    public Mascota getMascota() {
-        return mascota;
-    }
-
-    public void setMascota(Mascota mascota) {
-        this.mascota = mascota;
     }
 
     public String getId() {
@@ -56,6 +40,22 @@ public class Cita {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public String getHoraInicial() {
+        return horaInicial;
+    }
+
+    public void setHoraInicial(String horaInicial) {
+        this.horaInicial = horaInicial;
+    }
+
+    public String getHoraFinal() {
+        return horaFinal;
+    }
+
+    public void setHoraFinal(String horaFinal) {
+        this.horaFinal = horaFinal;
     }
 
     public Sede getSede() {
@@ -82,16 +82,11 @@ public class Cita {
         this.veterinario = veterinario;
     }
 
-    @Override
-    public String toString() {
-        return "Cita{" +
-                "id='" + id + '\'' +
-                ", fecha=" + fecha +
-                ", hora=" + hora +
-                ", sede=" + sede +
-                ", consultorio='" + consultorio + '\'' +
-                ", mascota=" + mascota +
-                ", veterinario=" + veterinario +
-                '}';
+    public List<Consulta> getListConsultas() {
+        return listConsultas;
+    }
+
+    public void setListConsultas(List<Consulta> listConsultas) {
+        this.listConsultas = listConsultas;
     }
 }

@@ -6,35 +6,22 @@ import java.util.List;
 
 public class Consulta {
     private String id;
-    private Mascota mascota;
     private LocalDate fecha;
     private String hora;
     private String motivo;
     private String diagnostico;
     private Veterinario veterinario;
-    private List<Tratamiento> listratamientos;
+    private List<Tratamiento> listtratamientos;
 
-    public Consulta(String id, Mascota mascota, LocalDate fecha, String hora, String motivo, String diagnostico, Veterinario veterinario) {
+    public Consulta(String id, LocalDate fecha, String hora, String motivo, String diagnostico, Veterinario veterinario) {
         this.id = id;
-        this.mascota = mascota;
         this.fecha = fecha;
         this.hora = hora;
         this.motivo = motivo;
         this.diagnostico = diagnostico;
         this.veterinario = veterinario;
-        this.listratamientos = new ArrayList<>();
+        this.listtratamientos = new ArrayList<>();
 
-    }
-    public void agregarTratamiento(Tratamiento tratamiento) {
-        App.veterinaria.agregarTratamiento(tratamiento);
-    }
-
-    public Mascota getMascota() {
-        return mascota;
-    }
-
-    public void setMascota(Mascota mascota) {
-        this.mascota = mascota;
     }
 
     public Veterinario getVeterinario() {
@@ -86,24 +73,10 @@ public class Consulta {
     }
 
     public List<Tratamiento> getListtratamientos() {
-        return listratamientos;
+        return listtratamientos;
     }
 
     public void setListtratamientos(List<Tratamiento> listtratamientos) {
-        this.listratamientos = listtratamientos;
-    }
-
-    @Override
-    public String toString() {
-        return "Consulta{" +
-                "id='" + id + '\'' +
-                ", mascota=" + mascota +
-                ", fecha=" + fecha +
-                ", hora='" + hora + '\'' +
-                ", motivo='" + motivo + '\'' +
-                ", diagnostico='" + diagnostico + '\'' +
-                ", veterinario=" + veterinario +
-                ", listratamientos=" + listratamientos +
-                '}';
+        this.listtratamientos = listtratamientos;
     }
 }
