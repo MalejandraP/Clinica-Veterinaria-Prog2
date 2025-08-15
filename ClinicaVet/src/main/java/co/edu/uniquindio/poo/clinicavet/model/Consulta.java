@@ -12,7 +12,7 @@ public class Consulta {
     private String motivo;
     private String diagnostico;
     private Veterinario veterinario;
-    private List<Tratamiento> listtratamientos;
+    private List<Tratamiento> listratamientos;
 
     public Consulta(String id, Mascota mascota, LocalDate fecha, String hora, String motivo, String diagnostico, Veterinario veterinario) {
         this.id = id;
@@ -22,8 +22,11 @@ public class Consulta {
         this.motivo = motivo;
         this.diagnostico = diagnostico;
         this.veterinario = veterinario;
-        this.listtratamientos = new ArrayList<>();
+        this.listratamientos = new ArrayList<>();
 
+    }
+    public void agregarTratamiento(Tratamiento tratamiento) {
+        App.veterinaria.agregarTratamiento(tratamiento);
     }
 
     public Mascota getMascota() {
@@ -83,10 +86,24 @@ public class Consulta {
     }
 
     public List<Tratamiento> getListtratamientos() {
-        return listtratamientos;
+        return listratamientos;
     }
 
     public void setListtratamientos(List<Tratamiento> listtratamientos) {
-        this.listtratamientos = listtratamientos;
+        this.listratamientos = listtratamientos;
+    }
+
+    @Override
+    public String toString() {
+        return "Consulta{" +
+                "id='" + id + '\'' +
+                ", mascota=" + mascota +
+                ", fecha=" + fecha +
+                ", hora='" + hora + '\'' +
+                ", motivo='" + motivo + '\'' +
+                ", diagnostico='" + diagnostico + '\'' +
+                ", veterinario=" + veterinario +
+                ", listratamientos=" + listratamientos +
+                '}';
     }
 }

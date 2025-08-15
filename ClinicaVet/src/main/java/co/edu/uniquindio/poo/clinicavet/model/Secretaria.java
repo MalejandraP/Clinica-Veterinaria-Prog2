@@ -1,8 +1,14 @@
 package co.edu.uniquindio.poo.clinicavet.model;
 
+import java.util.List;
+
 public class Secretaria extends Personal{
     private String experiencia;
     private Veterinaria veterinaria;
+    private List<Propietario> listPropietarios;
+    private List<Veterinario> listVeterinarios;
+    private List<Mascota> listMascotas;
+    private List<Cita> listCitas;
 
     public Secretaria(String nombre, String id, double salario, String experiencia) {
         super(nombre, id, salario);
@@ -27,9 +33,7 @@ public class Secretaria extends Personal{
     public void eliminarCita(String id){
         App.veterinaria.eliminarCita(id);
     }
-    public void eliminarConsulta(String id){
-        App.veterinaria.eliminarConsulta(id);
-    }
+
     public void agregarPropietario(Propietario propietario){
         App.veterinaria.agregarPropietario(propietario);
     }
@@ -47,9 +51,6 @@ public class Secretaria extends Personal{
     }
     public void agregarCita(Cita cita){
         App.veterinaria.agregarCita(cita);
-    }
-    public void agregarConsulta(Consulta consulta){
-        App.veterinaria.agregarConsulta(consulta);
     }
     public void actualizarPropietario(String id, Propietario actualizado){
         App.veterinaria.actualizarPropietario(id, actualizado);
@@ -69,30 +70,7 @@ public class Secretaria extends Personal{
     public void actualizarCita(String id, Cita cita){
         App.veterinaria.actualizarCita(id, cita);
     }
-    public void actualizarConsulta(String id, Consulta consulta){
-        App.veterinaria.actualizarConsulta(id, consulta);
-    }
-    public void buscarPropietario(String id){
-        App.veterinaria.buscarPropietario(id);
-    }
-    public  void buscarMascota(String id){
-        App.veterinaria.buscarMascota(id);
-    }
-    public void buscarVeterinario(String id){
-        App.veterinaria.buscarVeterinario(id);
-    }
-    public void buscarSecretaria(String id){
-        App.veterinaria.buscarSecretaria(id);
-    }
-    public void buscarAseo(String id){
-        App.veterinaria.buscarAseo(id);
-    }
-    public void buscarCita(String id){
-        App.veterinaria.buscarCita(id);
-    }
-    public void buscarConsulta(String id){
-        App.veterinaria.buscarConsulta(id);
-    }
+
     public int cantidadPerros(Mascota mascota){
         int perros= App.veterinaria.cantidadPerros(mascota);
         return perros;
@@ -121,5 +99,54 @@ public class Secretaria extends Personal{
 
     public void setExperiencia(String experiencia) {
         this.experiencia = experiencia;
+    }
+
+    public Veterinaria getVeterinaria() {
+        return veterinaria;
+    }
+
+    public void setVeterinaria(Veterinaria veterinaria) {
+        this.veterinaria = veterinaria;
+    }
+
+    public List<Propietario> getListPropietarios() {
+        return listPropietarios;
+    }
+
+    public void setListPropietarios(List<Propietario> listPropietarios) {
+        this.listPropietarios = listPropietarios;
+    }
+
+    public List<Veterinario> getListVeterinarios() {
+        return listVeterinarios;
+    }
+
+    public void setListVeterinarios(List<Veterinario> listVeterinarios) {
+        this.listVeterinarios = listVeterinarios;
+    }
+
+    public List<Mascota> getListMascotas() {
+        return listMascotas;
+    }
+
+    public void setListMascotas(List<Mascota> listMascotas) {
+        this.listMascotas = listMascotas;
+    }
+
+    public List<Cita> getListCitas() {
+        return listCitas;
+    }
+
+    public void setListCitas(List<Cita> listCitas) {
+        this.listCitas = listCitas;
+    }
+
+    @Override
+    public String toString() {
+        return "Secretaria{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", experiencia='" + experiencia + '\'' +
+                '}';
     }
 }

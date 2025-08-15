@@ -82,4 +82,16 @@ public class Cita {
         this.veterinario = veterinario;
     }
 
+    @Override
+    public String toString() {
+        return "Cita{" +
+                "id='" + id + '\'' +
+                ", fecha=" + fecha +
+                ", hora=" + hora +
+                ", sede=" + sede +
+                ", consultorio='" + consultorio + '\'' +
+                ", mascota=" + mascota +
+                ", veterinario=" + veterinario +
+                '}';
+    }
 }

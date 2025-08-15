@@ -15,6 +15,7 @@ public class Veterinaria {
     private List<Aseo> listAseos;
     private List<Cita> listCitas;
     private List<Consulta> listConsultas;
+    private List<Tratamiento> listTratamientos;
 
     public Veterinaria(String nombre, String direccion, Sede sede) {
         this.nombre = nombre;
@@ -105,6 +106,17 @@ public class Veterinaria {
         }
         return centinela;
     }
+    public boolean verificarTratamiento(String id) {
+        boolean centinela = false;
+        for (Tratamiento t: listTratamientos) {
+            if (t.getId().equals(id)) {
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
 
     public boolean eliminarPropietario(String id) {
         boolean centinela = false;
@@ -192,6 +204,19 @@ public class Veterinaria {
 
     }
 
+    public boolean eliminarTratamiento(String id) {
+        boolean centinela = false;
+        for (Tratamiento tratamiento : listTratamientos) {
+            if (tratamiento.getId().equals(id)) {
+                listTratamientos.remove(tratamiento);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+
+    }
+
     public boolean agregarPropietario(Propietario propietario) {
         boolean centinela = false;
         for (Propietario p : listPropietarios) {
@@ -269,6 +294,18 @@ public class Veterinaria {
         for (Consulta co : listConsultas) {
             if (!verificarConsulta(consulta.getId())) {
                 listConsultas.add(co);
+                centinela = true;
+                break;
+            }
+        }
+        return centinela;
+    }
+
+    public boolean agregarTratamiento(Tratamiento tratamiento) {
+        boolean centinela = false;
+        for (Tratamiento t : listTratamientos) {
+            if (!verificarTratamiento(t.getId())) {
+                listTratamientos.add(t);
                 centinela = true;
                 break;
             }
@@ -366,6 +403,7 @@ public class Veterinaria {
                 c.setHora(actualizado.getHora());
                 c.setSede(actualizado.getSede());
                 c.setConsultorio(actualizado.getConsultorio());
+                c.setMascota(actualizado.getMascota());
                 c.setVeterinario(actualizado.getVeterinario());
                 centinela = true;
             }
@@ -378,11 +416,25 @@ public class Veterinaria {
         for (Consulta a : listConsultas) {
             if (a.getId().equals(id)) {
                 a.setId(actualizado.getId());
+                a.setMascota(actualizado.getMascota());
                 a.setFecha(actualizado.getFecha());
                 a.setHora(actualizado.getHora());
                 a.setMotivo(actualizado.getMotivo());
                 a.setDiagnostico(actualizado.getDiagnostico());
                 a.setVeterinario(actualizado.getVeterinario());
+
+            }
+        }
+        return centinela;
+    }
+    public boolean actualizarTratamiento(String id, Tratamiento actualizado) {
+        boolean centinela = false;
+        for(Tratamiento t : listTratamientos){
+            if (t.getId().equals(id)) {
+                t.setMedicamento(actualizado.getMedicamento());
+                t.setId(actualizado.getId());
+                t.setDosis(actualizado.getDosis());
+                t.setTiempo(actualizado.getTiempo());
 
             }
         }
@@ -451,8 +503,16 @@ public class Veterinaria {
         }
         return null;
     }
+    public Tratamiento buscarTramiento(String id) {
+        for (Tratamiento t : listTratamientos) {
+            if (t.getId().equals(id)) {
+                return t;
+            }
+        }
+        return null;
+    }
 
-    public int cantidadPerros(Mascota mascota) {
+    public int cantidadPerros() {
         int perros = 0;
         for (Mascota m : listMascotas) {
             if (m.getEspecie().equals(Especie.PERRO)) {
@@ -462,7 +522,7 @@ public class Veterinaria {
         return perros;
     }
 
-    public int cantidadGatos(Mascota mascota) {
+    public int cantidadGatos() {
         int gatos = 0;
         for (Mascota m : listMascotas) {
             if (m.getEspecie().equals(Especie.GATO)) {
@@ -472,7 +532,7 @@ public class Veterinaria {
         return gatos;
     }
 
-    public int cantidadAves(Mascota mascota) {
+    public int cantidadAves() {
         int aves = 0;
         for (Mascota m : listMascotas) {
             if (m.getEspecie().equals(Especie.AVE)) {
@@ -482,7 +542,7 @@ public class Veterinaria {
         return aves;
     }
 
-    public int cantidadOtrasMascotas(Mascota mascota) {
+    public int cantidadOtrasMascotas() {
         int otros = 0;
         for (Mascota m : listMascotas) {
             if (m.getEspecie().equals(Especie.OTRO)) {
@@ -503,10 +563,10 @@ public class Veterinaria {
         }
         return disponibilidad;
     }
-    public List<Cita> hallarListaCitasVeterinario(LocalDate fecha){
+    public List<Cita> hallarListaCitasVeterinario(String id, LocalDate fecha){
         List<Cita> listCitasVeterinario = new ArrayList<>();
         for(Cita c : listCitas){
-            if(c.getFecha().equals(fecha)){
+            if(c.getFecha().equals(fecha) && c.getVeterinario().getId().equals(id)){
                 listCitasVeterinario.add(c);
             }
 
@@ -514,6 +574,40 @@ public class Veterinaria {
         return listCitasVeterinario;
 
     }
+    public List<Consulta> hallarlistaConsultasMascota(String id){
+        List<Consulta> listConsultasMascota = new ArrayList<>();
+
+        for(Consulta c : listConsultas){
+            if(c.getMascota().getId().equals(id)){
+                listConsultasMascota.add(c);
+            }
+        }
+        return listConsultasMascota;
+    }
+
+    public List<Hora> buscarVeterinarioOcupado(String id, LocalDate fecha){
+        List<Hora> listVeterinarioOcupado = new ArrayList<>();
+
+        for(Cita c : listCitas){
+            if(c.getFecha().equals(fecha) && c.getVeterinario().getId().equals(id)){
+                listVeterinarioOcupado.add(c.getHora());
+
+            }
+        }
+        return listVeterinarioOcupado;
+
+    }
+
+    public List<Hora> disponibilidadVeterinario(String id, LocalDate fecha){
+        List<Hora> listVeterinarioLibre = new ArrayList<>();
+        for(Cita c : listCitas){
+            if(!buscarVeterinarioOcupado(id,fecha).contains(c.getHora())){
+               listVeterinarioLibre.add(c.getHora());
+            }
+        }
+        return listVeterinarioLibre;
+    }
+
 
 
 
