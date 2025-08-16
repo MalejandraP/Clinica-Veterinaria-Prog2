@@ -9,6 +9,7 @@ import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class RegistroCitaViewController {
@@ -16,58 +17,53 @@ public class RegistroCitaViewController {
     private RegistroCitaController registroCitaController;
 
     @FXML
+    private URL location;
+    @FXML
+    private ResourceBundle resources;
+    @FXML
     private TextField txtIdCita, txtConsultorio;
     @FXML
-    private Button btnRegresar, btnRegistrar;
-    @FXML
-    private DatePicker dtpFecha;
+    private Button btnRegistrar, btnRegresar;
     @FXML
     private ComboBox<Veterinario> cbxVeterinario;
-    @FXML
-    private ComboBox<Hora> cbxHora;
     @FXML
     private ComboBox<Mascota> cbxMascota;
     @FXML
     private ComboBox<Sede> cbxSede;
     @FXML
+    private ComboBox<Hora> cbxHora;
+    @FXML
+    private DatePicker dtpFecha;
+
+    @FXML
     void onRegresar(){
         regresarASecretaria();
+    }
+    @FXML
+    private void regresarASecretaria(){
+        registroCitaController.regresar();
     }
     @FXML
     void onRegistrar(){
         registrarCita();
     }
     @FXML
-    private void regresarASecretaria(){
-        registroCitaController.regresarASecretaria();
-    }
-    @FXML
     private void registrarCita(){
         try{
-            Consulta consulta = buildConsulta();
-            if(consulta == null){
-                mostrarAlerta("Errorcito","Por fa completa todos los campos");
+            Cita cita = buildCita();
+            if(cita == null){
+                mostrarAlerta("Error", "Completa todos los campos");
                 return;
             }
-            if(veterinarioController.registrarConsulta(consulta)){
-                mostrarAlerta("Exito","Agregado exitosamente");
-            } else{
-                mostrarAlerta("Error", "No se pudo agregar la consulta");
+            if(registroCitaController.agregarCita(cita)){
+                limpiarCampos();
+                mostrarAlerta("Exito", "Cita agregada correctamente");
+            } else {
+                mostrarAlerta("Error", "No se pudo registrar la cita correctamente");
             }
-        } catch (Exception e) {
-            mostrarAlerta("Error", "Datos inválidos: " + e.getMessage());
+        } catch (Exception e){
+            mostrarAlerta("Error", "Datos invalidos" + e.getMessage());
         }
-    }
-    private Cita buildCita(){
-        String id = txtIdCita.getText();
-        LocalDate fecha = dtpFecha.getValue();
-        Hora hora = cbxHora.getValue();
-        Sede sede = cbxSede.getValue();
-        String consultorio = txtConsultorio.getText();
-        Mascota mascota = cbxMascota.getValue();
-        Veterinario veterinario = cbxVeterinario.getValue();
-        Cita cita = new Cita(id, fecha, hora, sede, consultorio, veterinario);
-        return cita;
     }
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -77,42 +73,85 @@ public class RegistroCitaViewController {
         alert.showAndWait();
     }
     public void initialize(){
-        cbxMascota.getItems().addAll(registroCitaController.obtenerListaMascotas());
+        cbxSede.getItems().addAll(Sede.values());
+        cargarEventos();
+    }
+    private void cargarMascotas(){
+        cbxMascota.getItems().clear();
+        cbxMascota.getItems().addAll(registroCitaController.obtenerMascotas());
         cbxMascota.setConverter(new StringConverter<Mascota>() {
             @Override
             public String toString(Mascota mascota) {
                 return mascota != null ? mascota.getNombre() : "";
             }
-
             @Override
-            public Mascota fromString(String s) {
+            public Mascota fromString(String string) {
                 return null;
             }
         });
-        cbxVeterinario.getItems().addAll(registroCitaController.obtenerListaVeterinarios());
+    }
+    private void cargarVeterinarios(){
+        cbxVeterinario.getItems().clear();
+        cbxVeterinario.getItems().addAll(registroCitaController.obtenerVeterinarios());
         cbxVeterinario.setConverter(new StringConverter<Veterinario>() {
             @Override
             public String toString(Veterinario veterinario) {
                 return veterinario != null ? veterinario.getNombre() : "";
             }
-
             @Override
-            public Veterinario fromString(String s) {
+            public Veterinario fromString(String string) {
                 return null;
             }
         });
-        cbxSede.getItems().addAll(Sede.values());
     }
+    private void cargarEventos() {
+        dtpFecha.valueProperty().addListener((obs, oldDate, newDate) -> {
+            Veterinario vetSeleccionado = cbxVeterinario.getValue(); // lo que escogió el usuario
+            if (newDate != null && registroCitaController != null && vetSeleccionado != null) {
+                List<Hora> horas = registroCitaController.obtenerHorasVeterinario(vetSeleccionado.getId(), newDate);
+                cbxHora.getItems().setAll(horas);
+            }
+        });
+
+        // opcional: actualizar horas cuando cambie el veterinario
+        cbxVeterinario.valueProperty().addListener((obs, oldVet, newVet) -> {
+            LocalDate fechaSeleccionada = dtpFecha.getValue();
+            if (newVet != null && fechaSeleccionada != null && registroCitaController != null) {
+                List<Hora> horas = registroCitaController.obtenerHorasVeterinario(newVet.getId(), fechaSeleccionada);
+                cbxHora.getItems().setAll(horas);
+            }
+        });
+    }
+    private Cita buildCita() {
+        String id = txtIdCita.getText();
+        Hora hora = cbxHora.getValue();
+        Sede sede = cbxSede.getValue();
+        String consultorio = txtConsultorio.getText();
+        LocalDate fecha = dtpFecha.getValue();
+        Veterinario veterinario = cbxVeterinario.getValue();
+        Mascota mascota = cbxMascota.getValue();
+        Cita cita = new Cita(id, fecha, hora, sede, consultorio, mascota, veterinario);
+        if (cita == null) {
+            return null;
+        }
+        return cita;
+    }
+
     public void setApp(App app){
         this.app = app;
     }
     public void setRegistroCitaController(RegistroCitaController registroCitaController){
         this.registroCitaController = registroCitaController;
+        cargarMascotas();
+        cargarVeterinarios();
     }
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+    private void limpiarCampos(){
+        txtIdCita.clear();
+        txtConsultorio.clear();
+        cbxHora.setValue(null);
+        cbxSede.setValue(null);
+        cbxVeterinario.setValue(null);
+        cbxMascota.setValue(null);
+    }
 
 }

@@ -1,5 +1,10 @@
 package co.edu.uniquindio.poo.clinicavet.model;
 
+import co.edu.uniquindio.poo.clinicavet.model.Hora;
+import co.edu.uniquindio.poo.clinicavet.model.Mascota;
+import co.edu.uniquindio.poo.clinicavet.model.Sede;
+import co.edu.uniquindio.poo.clinicavet.model.Veterinario;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,23 +12,39 @@ import java.util.List;
 public class Cita {
     private String id;
     private LocalDate fecha;
-    private String horaInicial;
-    private String horaFinal;
+    private Hora hora;
     private Sede sede;
     private String consultorio;
+    private Mascota mascota;
     private Veterinario veterinario;
-    private List<Consulta> listConsultas;
 
-    public Cita(String id, LocalDate fecha, String horaInicial, String horaFinal, Sede sede, String consultorio, Veterinario veterinario) {
+
+    public Cita(String id, LocalDate fecha, Hora hora, Sede sede, String consultorio, Mascota mascota, Veterinario veterinario) {
         this.id = id;
         this.fecha = fecha;
-        this.horaInicial = horaInicial;
-        this.horaFinal = horaFinal;
+        this.hora = hora;
         this.sede = sede;
         this.consultorio = consultorio;
-        this.listConsultas = new ArrayList<>();
+        this.mascota = mascota;
+
         this.veterinario = veterinario;
 
+    }
+
+    public Hora getHora() {
+        return hora;
+    }
+
+    public void setHora(Hora hora) {
+        this.hora = hora;
+    }
+
+    public Mascota getMascota() {
+        return mascota;
+    }
+
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
     }
 
     public String getId() {
@@ -40,22 +61,6 @@ public class Cita {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
-    }
-
-    public String getHoraInicial() {
-        return horaInicial;
-    }
-
-    public void setHoraInicial(String horaInicial) {
-        this.horaInicial = horaInicial;
-    }
-
-    public String getHoraFinal() {
-        return horaFinal;
-    }
-
-    public void setHoraFinal(String horaFinal) {
-        this.horaFinal = horaFinal;
     }
 
     public Sede getSede() {
@@ -82,11 +87,17 @@ public class Cita {
         this.veterinario = veterinario;
     }
 
-    public List<Consulta> getListConsultas() {
-        return listConsultas;
-    }
-
-    public void setListConsultas(List<Consulta> listConsultas) {
-        this.listConsultas = listConsultas;
+    @Override
+    public String toString() {
+        return "Cita{" +
+                "id='" + id + '\'' +
+                ", fecha=" + fecha +
+                ", hora=" + hora +
+                ", sede=" + sede +
+                ", consultorio='" + consultorio + '\'' +
+                ", mascota=" + mascota +
+                ", veterinario=" + veterinario +
+                '}';
     }
 }
+

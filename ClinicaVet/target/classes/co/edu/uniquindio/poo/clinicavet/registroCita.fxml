@@ -2,19 +2,30 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="481.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.clinicavet.viewController.RegistroCitaViewController">
-   <children>
-      <ComboBox layoutX="150.0" layoutY="73.0" prefWidth="150.0" />
-      <DatePicker layoutX="150.0" layoutY="134.0" prefHeight="25.0" prefWidth="120.0" />
-      <ComboBox layoutX="150.0" layoutY="198.0" prefHeight="25.0" prefWidth="120.0" />
-      <Label layoutX="42.0" layoutY="77.0" text="Elije al veterinario:" />
-      <Label layoutX="42.0" layoutY="138.0" text="Elije la fecha:" />
-      <Label layoutX="42.0" layoutY="202.0" text="Escoge la hora:" />
-      <Label layoutX="378.0" layoutY="77.0" text="Ingrese un id de la cita:" />
-      <TextField layoutX="365.0" layoutY="113.0" />
-      <Label layoutX="392.0" layoutY="159.0" text="Escoja la mascota:" />
-      <ChoiceBox layoutX="365.0" layoutY="198.0" prefWidth="150.0" />
-   </children>
+    <children>
+        <ComboBox fx:id="cbxVeterinario" layoutX="159.0" layoutY="134.0" prefHeight="25.0" prefWidth="149.0" />
+        <DatePicker fx:id="dtpFecha" layoutX="153.0" layoutY="198.0" prefHeight="25.0" prefWidth="120.0" />
+        <ComboBox fx:id="cbxHora" layoutX="153.0" layoutY="263.0" prefHeight="25.0" prefWidth="120.0" />
+        <Label layoutX="43.0" layoutY="138.0" text="Elije al veterinario:" />
+        <Label layoutX="43.0" layoutY="202.0" text="Elije la fecha:" />
+        <Label layoutX="42.0" layoutY="267.0" text="Escoge la hora:" />
+        <Label layoutX="365.0" layoutY="194.0" text="Ingrese un id de la cita:" />
+        <TextField fx:id="txtIdCita" layoutX="352.0" layoutY="223.0" />
+        <Label layoutX="379.0" layoutY="297.0" text="Escoja la mascota:" />
+        <ComboBox fx:id="cbxMascota" layoutX="351.0" layoutY="329.0" prefWidth="150.0" />
+        <ComboBox fx:id="cbxSede" layoutX="138.0" layoutY="329.0" prefHeight="25.0" prefWidth="149.0" />
+        <Label layoutX="62.0" layoutY="333.0" text="Sede:" />
+      <Button fx:id="btnRegresar" layoutX="30.0" layoutY="23.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
+      <Button fx:id="btnRegistrar" layoutX="247.0" layoutY="418.0" mnemonicParsing="false" onAction="#onRegistrar" text="Registrar" />
+      <Label layoutX="231.0" layoutY="56.0" text="Gestion Citas">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtConsultorio" layoutX="352.0" layoutY="147.0" />
+      <Label layoutX="395.0" layoutY="121.0" text="Consultorio:" />
+    </children>
 </AnchorPane>

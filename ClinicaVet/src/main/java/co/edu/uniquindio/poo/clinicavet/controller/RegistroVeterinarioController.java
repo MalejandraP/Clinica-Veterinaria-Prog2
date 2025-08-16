@@ -3,6 +3,9 @@ package co.edu.uniquindio.poo.clinicavet.controller;
 import co.edu.uniquindio.poo.clinicavet.App;
 import co.edu.uniquindio.poo.clinicavet.model.Secretaria;
 import co.edu.uniquindio.poo.clinicavet.model.Veterinaria;
+import co.edu.uniquindio.poo.clinicavet.model.Veterinario;
+
+import java.util.List;
 
 public class RegistroVeterinarioController {
     private App app;
@@ -12,7 +15,24 @@ public class RegistroVeterinarioController {
     public RegistroVeterinarioController(Veterinaria veterinaria) {
         this.veterinaria = veterinaria;
     }
-
+    public boolean agregarVeterinario(Veterinario veterinario) {
+        secretaria.agregarVeterinario(veterinario);
+        return true;
+    }
+    public boolean eliminarVeterinario(String id) {
+        secretaria.eliminarVeterinario(id);
+        return true;
+    }
+    public boolean actualizarVeterinario(String id,Veterinario veterinario) {
+        secretaria.actualizarVeterinario(id, veterinario);
+        return true;
+    }
+    public void regresarASecretaria(){
+        app.openCrudSecretaria(secretaria);
+    }
+    public List<Veterinario> obtenerListaVeterinarios() {
+        return veterinaria.getListVeterinarios();
+    }
     public void setVeterinaria(Veterinaria veterinaria){
         this.veterinaria = veterinaria;
     }

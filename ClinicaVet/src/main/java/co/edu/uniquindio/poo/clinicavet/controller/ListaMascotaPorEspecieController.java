@@ -17,7 +17,7 @@ public class ListaMascotaPorEspecieController {
         return secretaria.cantidadAves();
     }
     public int cantOtros(){
-        return secretaria.cantidadAves();
+        return secretaria.cantidadOtrasMascotas();
     }
     public void irASecretaria(){
         app.openCrudSecretaria(secretaria);
