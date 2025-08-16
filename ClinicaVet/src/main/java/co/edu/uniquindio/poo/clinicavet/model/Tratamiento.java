@@ -1,15 +1,24 @@
 package co.edu.uniquindio.poo.clinicavet.model;
 
 public class Tratamiento {
-    private String medicamento;
+    private String medicamento, id;
     private String dosis;
     private String tiempo;
 
-    public Tratamiento(String medicamento, String dosis, String tiempo) {
+    public Tratamiento(String medicamento, String id, String dosis, String tiempo) {
         this.medicamento = medicamento;
+        this.id = id;
         this.dosis = dosis;
         this.tiempo = tiempo;
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMedicamento() {
@@ -35,4 +44,15 @@ public class Tratamiento {
     public void setTiempo(String tiempo) {
         this.tiempo = tiempo;
     }
+
+    @Override
+    public String toString() {
+        return "Tratamiento{" +
+                "medicamento='" + medicamento + '\'' +
+                ", id='" + id + '\'' +
+                ", dosis='" + dosis + '\'' +
+                ", tiempo='" + tiempo + '\'' +
+                '}';
+    }
 }
+

@@ -1,9 +1,9 @@
 package co.edu.uniquindio.poo.clinicavet.controller;
 
 import co.edu.uniquindio.poo.clinicavet.App;
-import co.edu.uniquindio.poo.clinicavet.model.Secretaria;
-import co.edu.uniquindio.poo.clinicavet.model.Veterinaria;
-import co.edu.uniquindio.poo.clinicavet.model.Veterinario;
+import co.edu.uniquindio.poo.clinicavet.model.*;
+
+
 
 public class PrimaryController {
     private Veterinaria veterinaria;
@@ -17,16 +17,23 @@ public class PrimaryController {
     }
 
     public boolean redireccionarSegunId(String id){
+        System.out.println("Buscando secretaria con id: " + id);
         Secretaria secretaria = veterinaria.buscarSecretaria(id);
         if(secretaria != null){
+            System.out.println("Secretaria encontrada: " + secretaria.getNombre());
             app.openCrudSecretaria(secretaria);
             return true;
         }
+
+        System.out.println("Buscando veterinario con id: " + id);
         Veterinario veterinario = veterinaria.buscarVeterinario(id);
         if(veterinario != null){
+            System.out.println("Veterinario encontrado: " + veterinario.getNombre());
             app.openCrudVeterinario(veterinario);
             return true;
         }
+
+        System.out.println("No se encontró secretaria ni veterinario con ese id");
         return false;
     }
 

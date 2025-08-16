@@ -38,8 +38,11 @@ public class PrimaryViewController {
 
     @FXML
     void onIngresarId (){
+        System.out.println("Clic en ingresar");
         String id = txtIdentificacion.getText();
+        System.out.println("Id ingresado:" + id);
         boolean redireccionado = primaryController.redireccionarSegunId(id);
+        System.out.println("Redireccionado:" + redireccionado);
     }
 
 

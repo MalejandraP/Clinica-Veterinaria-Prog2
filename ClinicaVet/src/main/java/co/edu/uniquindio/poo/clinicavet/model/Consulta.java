@@ -1,27 +1,46 @@
 package co.edu.uniquindio.poo.clinicavet.model;
 
+import co.edu.uniquindio.poo.clinicavet.App;
+import co.edu.uniquindio.poo.clinicavet.model.Mascota;
+import co.edu.uniquindio.poo.clinicavet.model.Tratamiento;
+import co.edu.uniquindio.poo.clinicavet.model.Veterinario;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Consulta {
     private String id;
+    private Mascota mascota;
     private LocalDate fecha;
-    private String hora;
+    private Hora hora;
     private String motivo;
     private String diagnostico;
     private Veterinario veterinario;
-    private List<Tratamiento> listtratamientos;
+    private List<Tratamiento> listratamientos;
+    private Veterinaria veterinaria;
 
-    public Consulta(String id, LocalDate fecha, String hora, String motivo, String diagnostico, Veterinario veterinario) {
+    public Consulta(String id, Mascota mascota, LocalDate fecha, Hora hora, String motivo, String diagnostico, Veterinario veterinario) {
         this.id = id;
+        this.mascota = mascota;
         this.fecha = fecha;
         this.hora = hora;
         this.motivo = motivo;
         this.diagnostico = diagnostico;
         this.veterinario = veterinario;
-        this.listtratamientos = new ArrayList<>();
+        this.listratamientos = new ArrayList<>();
 
+    }
+    public void agregarTratamiento(Tratamiento tratamiento) {
+        veterinaria.agregarTratamiento(tratamiento);
+    }
+
+    public Mascota getMascota() {
+        return mascota;
+    }
+
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
     }
 
     public Veterinario getVeterinario() {
@@ -48,11 +67,11 @@ public class Consulta {
         this.fecha = fecha;
     }
 
-    public String getHora() {
+    public Hora getHora() {
         return hora;
     }
 
-    public void setHora(String hora) {
+    public void setHora(Hora hora) {
         this.hora = hora;
     }
 
@@ -72,11 +91,25 @@ public class Consulta {
         this.diagnostico = diagnostico;
     }
 
-    public List<Tratamiento> getListtratamientos() {
-        return listtratamientos;
+    public List<Tratamiento> getListratamientos() {
+        return listratamientos;
     }
 
-    public void setListtratamientos(List<Tratamiento> listtratamientos) {
-        this.listtratamientos = listtratamientos;
+    public void setListratamientos(List<Tratamiento> listratamientos) {
+        this.listratamientos = listratamientos;
+    }
+
+    @Override
+    public String toString() {
+        return "Consulta{" +
+                "id='" + id + '\'' +
+                ", mascota=" + mascota +
+                ", fecha=" + fecha +
+                ", hora='" + hora + '\'' +
+                ", motivo='" + motivo + '\'' +
+                ", diagnostico='" + diagnostico + '\'' +
+                ", veterinario=" + veterinario +
+                ", listratamientos=" + listratamientos +
+                '}';
     }
 }

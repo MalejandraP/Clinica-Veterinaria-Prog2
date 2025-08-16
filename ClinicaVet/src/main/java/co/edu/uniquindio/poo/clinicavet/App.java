@@ -1,10 +1,7 @@
 package co.edu.uniquindio.poo.clinicavet;
 
 import co.edu.uniquindio.poo.clinicavet.controller.*;
-import co.edu.uniquindio.poo.clinicavet.model.Secretaria;
-import co.edu.uniquindio.poo.clinicavet.model.Sede;
-import co.edu.uniquindio.poo.clinicavet.model.Veterinaria;
-import co.edu.uniquindio.poo.clinicavet.model.Veterinario;
+import co.edu.uniquindio.poo.clinicavet.model.*;
 import co.edu.uniquindio.poo.clinicavet.viewController.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +13,10 @@ import java.io.IOException;
 
 public class App extends Application {
     private Stage primaryStage;
-    public static Veterinaria veterinaria = new Veterinaria("UQ", "Cra 7 #30-20", Sede.SEDE1);
+    private Veterinaria veterinaria = new Veterinaria("Uq", "Cra 7 #30-20", Sede.SEDE1);
+    public Veterinaria getVeterinaria() {
+        return veterinaria;
+    }
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.primaryStage = primaryStage;
@@ -193,7 +193,7 @@ public class App extends Application {
     public void openListaConsultaPorMascota() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource("listaMascotasPorEspecie.fxml"));
+            loader.setLocation(App.class.getResource("listaConsultaPorMascota.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             ListaConsultaPorMascotaViewController listaConsultaPorMascotaViewController = loader.getController();
             ListaConsultaPorMascotaController listaConsultaPorMascotaController = new ListaConsultaPorMascotaController();
@@ -211,11 +211,19 @@ public class App extends Application {
         }
     }
 
+    public void inicializarData() {
+        Secretaria secretaria1 = new Secretaria("Susana", "123", 4000000, "3anios");
+        secretaria1.setVeterinaria(veterinaria);
+        Veterinario veterinario1 = new Veterinario("Pachito", "134", "Gnu vl3", Especialidad.EXOTICOS);
+        veterinario1.setVeterinaria(veterinaria);
+        Propietario propietario1 = new Propietario("Samuel", "333", "312", "Cra 5");
+        veterinaria.agregarPropietario(propietario1);
+        veterinaria.agregarVeterinario(veterinario1);
+        veterinaria.agregarSecretaria(secretaria1);
+        System.out.println("DEBUG - Lista de secretarias en veterinaria:");
+        for (Secretaria s : veterinaria.getListSecretarias()) {
+            System.out.println(" -> " + s.getId() + " - " + s.getNombre());
+        }
 
-
-
-
-
-
-    public void inicializarData() {}
+    }
 }

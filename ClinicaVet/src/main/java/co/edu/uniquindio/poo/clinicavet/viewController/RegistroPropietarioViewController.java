@@ -130,6 +130,8 @@ public class RegistroPropietarioViewController {
                 new SimpleStringProperty(cellData.getValue().getTelefono()));
         tbcDireccion.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getDireccion()));
+        tbvGestionPropietario.setItems(listPropietarios);
+        listenerSelection();
     }
 
     private Propietario buildPropietario(){
@@ -151,8 +153,13 @@ public class RegistroPropietarioViewController {
 
     public void obtenerPropietarios(){
         List<Propietario> propietarios = registroPropietarioController.obtenerListaPropietarios();
-        listPropietarios.setAll(propietarios);
-        tbvGestionPropietario.setItems(listPropietarios);
+        if(propietarios != null){
+            listPropietarios.setAll(propietarios);
+            tbvGestionPropietario.setItems(listPropietarios);
+        } else {
+            tbvGestionPropietario.getItems().clear();
+        }
+
     }
 
     private void listenerSelection(){
