@@ -1,4 +1,4 @@
-module co.edu.uniquindio.poo.ClinicaVet {
+module co.edu.uniquindio.poo.clinicaVet {
     requires javafx.controls;
     requires javafx.fxml;
 

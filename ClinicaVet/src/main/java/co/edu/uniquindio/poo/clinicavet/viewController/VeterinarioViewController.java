@@ -3,7 +3,6 @@ package co.edu.uniquindio.poo.clinicavet.viewController;
 import co.edu.uniquindio.poo.clinicavet.App;
 import co.edu.uniquindio.poo.clinicavet.controller.VeterinarioController;
 import co.edu.uniquindio.poo.clinicavet.model.*;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
@@ -17,24 +16,6 @@ public class VeterinarioViewController {
     private VeterinarioController veterinarioController;
     private App app;
     private Veterinario veterinario;
-    public void setVeterinarioController(VeterinarioController veterinarioController){
-        this.veterinarioController = veterinarioController;
-        if(veterinarioController.obtenerListaMascotas() != null){
-            cbxMascota.getItems().addAll(veterinarioController.obtenerListaMascotas());
-        } else {
-            System.out.println("No se encontro el Lista de Mascotas");
-        }
-        if (veterinarioController.obtenerListaTratamientos() != null){
-            cbxTratamiento.getItems().addAll(veterinarioController.obtenerListaTratamientos());
-        } else{
-            System.out.println("No se encontro el Lista de Tratamientos");
-        }
-    }
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Label lblIdCita, lblIdConsulta, lblNombre;
@@ -66,11 +47,11 @@ public class VeterinarioViewController {
         try{
             Consulta consulta = buildConsulta();
             if(consulta == null){
-                mostrarAlerta("Errorcito","Por fa completa todos los campos");
+                mostrarAlerta("Por fa completa todos los campos");
                 return;
             }
             if(veterinarioController.registrarConsulta(consulta)){
-                mostrarAlerta("Exito","Agregado exitosamente");
+                mostrarAlerta("Agregado exitosamente");
             } else{
                 mostrarAlerta("Error", "No se pudo agregar la consulta");
             }
@@ -95,12 +76,12 @@ public class VeterinarioViewController {
 
         Mascota mascota = cbxMascota.getValue();
         Tratamiento tratamiento = cbxTratamiento.getValue();
-        Consulta consulta = new Consulta(id,mascota,fecha,hora,motivo,diagnostico,veterinario);
+        Consulta consulta = new Consulta(id,fecha,hora,motivo,diagnostico,veterinario);
         return consulta;
     }
 
     public void initialize(){
-
+        cbxMascota.getItems().addAll(veterinarioController.obtenerListaMascotas());
         cbxMascota.setConverter(new StringConverter<Mascota>() {
             @Override
             public String toString(Mascota mascota) {
@@ -112,7 +93,7 @@ public class VeterinarioViewController {
                 return null;
             }
         });
-
+        cbxTratamiento.getItems().addAll(veterinarioController.obtenerListaTratamientos());
         cbxTratamiento.setConverter(new StringConverter<Tratamiento>() {
             @Override
             public String toString(Tratamiento tratamiento) {
@@ -134,5 +115,12 @@ public class VeterinarioViewController {
     public void setApp(App app) {
         this.app = app;
     }
+    public void setVeterinarioController(VeterinarioController veterinarioController){
+        this.veterinarioController = veterinarioController;
+    }
+    @FXML
+    private ResourceBundle resources;
 
+    @FXML
+    private URL location;
 }

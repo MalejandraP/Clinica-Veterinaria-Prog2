@@ -26,30 +26,14 @@ public class ListaMascotaPorEspecieViewController {
         controller.irASecretaria();
     }
     public void initialize(){
-        int cantPerros = numPerros();
-        int cantGatos = numGatos();
-        int cantAve = numAves();
-        int cantOtro = numOtros();
+        int cantPerros = controller.cantPerros();
+        int cantGatos = controller.cantGatos();
+        int cantAve = controller.cantAves();
+        int cantOtro = controller.cantOtros();
         lblPerro.setText(String.valueOf(cantPerros));
         lblGato.setText(String.valueOf(cantGatos));
         lblAve.setText(String.valueOf(cantAve));
         lblOtro.setText(String.valueOf(cantOtro));
-    }
-    private int numPerros(){
-        int cantPerros = controller.cantPerros();
-        return cantPerros;
-    }
-    private int numGatos(){
-        int cantGatos = controller.cantGatos();
-        return cantGatos;
-    }
-    private int numAves(){
-        int cantAves = controller.cantAves();
-        return cantAves;
-    }
-    private int numOtros(){
-        int cantOtros = controller.cantOtros();
-        return cantOtros;
     }
 
     @FXML

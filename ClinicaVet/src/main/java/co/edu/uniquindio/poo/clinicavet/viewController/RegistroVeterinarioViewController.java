@@ -3,7 +3,6 @@ package co.edu.uniquindio.poo.clinicavet.viewController;
 import co.edu.uniquindio.poo.clinicavet.App;
 import co.edu.uniquindio.poo.clinicavet.controller.RegistroVeterinarioController;
 import co.edu.uniquindio.poo.clinicavet.model.Especialidad;
-import co.edu.uniquindio.poo.clinicavet.model.Propietario;
 import co.edu.uniquindio.poo.clinicavet.model.Veterinario;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -41,7 +40,11 @@ public class RegistroVeterinarioViewController {
     @FXML
     private TableColumn<Veterinario, Especialidad> tbcEspecialidad;
     @FXML
+    private TableColumn<Veterinario, Boolean> tbcDisponible;
+    @FXML
     private TextField txtNombre, txtNumLicencia, txtId;
+    @FXML
+    private CheckBox chbDisponible;
 
     @FXML
     void onRegresar(){
@@ -130,7 +133,9 @@ public class RegistroVeterinarioViewController {
                 new SimpleStringProperty(cellData.getValue().getLicencia()));
         tbcEspecialidad.setCellValueFactory(cellData ->
                 new SimpleObjectProperty<>(cellData.getValue().getEspecialidad()));
-        tbvGestionVeterinarios.setItems(listVeterinarios);
+        tbcDisponible.setCellValueFactory(cellData ->
+                new SimpleObjectProperty<>(cellData.getValue().isEstado()));
+
         cbxEspecialidad.getItems().addAll(Especialidad.values());
         listenerSelection();
     }
@@ -139,8 +144,9 @@ public class RegistroVeterinarioViewController {
         String nombre = txtNombre.getText();
         String id = txtId.getText();
         String numLicencia = txtNumLicencia.getText();
+        boolean disponible = chbDisponible.isSelected();
         Especialidad especialidad = cbxEspecialidad.getValue();
-        Veterinario veterinario = new Veterinario(nombre, id, numLicencia, especialidad);
+        Veterinario veterinario = new Veterinario(nombre, id, numLicencia, disponible, especialidad);
         if (veterinario == null){
             return null;
         }
@@ -154,12 +160,8 @@ public class RegistroVeterinarioViewController {
 
     public void obtenerVeterinarios(){
         List<Veterinario> veterinarios = registroVeterinarioController.obtenerListaVeterinarios();
-        if(veterinarios != null){
-            listVeterinarios.setAll(veterinarios);
-            tbvGestionVeterinarios.setItems(listVeterinarios);
-        } else {
-            tbvGestionVeterinarios.setItems(listVeterinarios);
-        }
+        listVeterinarios.setAll(veterinarios);
+        tbvGestionVeterinarios.setItems(listVeterinarios);
     }
 
     private void listenerSelection(){
@@ -174,6 +176,7 @@ public class RegistroVeterinarioViewController {
             txtNombre.setText(veterinario.getNombre());
             txtId.setText(veterinario.getId());
             txtNumLicencia.setText(veterinario.getLicencia());
+            chbDisponible.setSelected(veterinario.isEstado());
             cbxEspecialidad.setValue(veterinario.getEspecialidad());
         }
     }
@@ -182,6 +185,7 @@ public class RegistroVeterinarioViewController {
         txtNombre.clear();
         txtId.clear();
         txtNumLicencia.clear();
+        chbDisponible.setSelected(false);
         cbxEspecialidad.setValue(null);
     }
 

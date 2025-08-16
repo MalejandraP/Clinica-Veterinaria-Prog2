@@ -1,10 +1,5 @@
 package co.edu.uniquindio.poo.clinicavet.model;
 
-import co.edu.uniquindio.poo.clinicavet.model.Especie;
-import co.edu.uniquindio.poo.clinicavet.model.Propietario;
-
-import java.util.List;
-
 public class Mascota {
     private String nombre;
     private String raza;
@@ -12,7 +7,6 @@ public class Mascota {
     private String id;
     private Especie especie;
     private Propietario propietario;
-    private List<Consulta> listConsultas;
 
     public Mascota(String nombre, String raza, int edad, String id, Especie especie, Propietario propietario){
         this.nombre = nombre;
@@ -21,15 +15,6 @@ public class Mascota {
         this.id = id;
         this.especie = especie;
         this.propietario = propietario;
-    }
-
-
-    public List<Consulta> getListConsultas() {
-        return listConsultas;
-    }
-
-    public void setListConsultas(List<Consulta> listConsultas) {
-        this.listConsultas = listConsultas;
     }
 
     public Especie getEspecie() {
@@ -79,22 +64,4 @@ public class Mascota {
     public void setPropietario(Propietario propietario) {
         this.propietario = propietario;
     }
-
-    @Override
-    public String toString() {
-        return "Mascota{" +
-                "nombre='" + nombre + '\'' +
-                ", raza='" + raza + '\'' +
-                ", edad=" + edad +
-                ", id='" + id + '\'' +
-                ", especie=" + especie +
-                ", propietario=" + propietario +
-                ", listConsultas=" + listConsultas +
-                '}';
-    }
 }
-
-
-
-
-
