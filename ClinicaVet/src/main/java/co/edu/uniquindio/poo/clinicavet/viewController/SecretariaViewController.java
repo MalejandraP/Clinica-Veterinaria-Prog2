@@ -12,24 +12,43 @@ import java.util.ResourceBundle;
 public class SecretariaViewController {
     private App app;
     private SecretariaController secretariaController;
-    private Secretaria secretaria;//yo diria que no tengo que llamrlo porque no necesito su nombre ni nada, tampoco setearlo entonces
+    private Secretaria secretaria;
 
     public void setSecretariaController(SecretariaController secretariaController) {
         this.secretariaController = secretariaController;
+    }
+    public void setSecretaria(Secretaria secretaria) {
+        this.secretaria = secretaria;
     }
     @FXML
     private ResourceBundle resources;
     @FXML
     private URL location;
 
-    private void setApp(App app) {
+    public void setApp(App app) {
         this.app = app;
     }
     @FXML
-    private Button btnRegresar, btnRegistrarMascota, btnRegistrarPropietario, btnRegistrarVeterinario, btnRealizarConsulta, btnAgendarCita;
+    private Button btnRegresar, btnRegistrarMascota, btnRegistrarPropietario, btnRegistrarVeterinario, btnAgendarCita, btnConsultasMascotas, btnMascotasPorEspecie;
     @FXML
     void onRegresar(){
         abrirPrimary();
+    }
+    @FXML
+    void onConsultasMasc(){
+        irAHistorialPorMAsc();
+    }
+    @FXML
+    void onMascEspecie(){
+        irACantMascotasPorEspecie();
+    }
+    @FXML
+    private void irACantMascotasPorEspecie(){
+        secretariaController.abrirCantMascotasEspecie();
+    }
+    @FXML
+    private void irAHistorialPorMAsc(){
+        secretariaController.abrirListaConsultaMascota();
     }
     @FXML
     private void abrirPrimary(){
@@ -58,14 +77,6 @@ public class SecretariaViewController {
     @FXML
     private void abrirRegistroVeterinario(){
         secretariaController.irAlRegistroVeterinario();
-    }
-    @FXML
-    void onRealizarConsulta(){
-        abrirRealizarConsulta();
-    }
-    @FXML
-    private void abrirRealizarConsulta(){
-        secretariaController.realizarConsulta();
     }
     @FXML
     void onAgendarCita(){

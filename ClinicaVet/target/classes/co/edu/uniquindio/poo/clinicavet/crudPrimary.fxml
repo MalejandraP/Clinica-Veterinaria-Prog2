@@ -25,11 +25,6 @@
          </font>
       </Label>
       <TextField fx:id="txtIdentificacion" layoutX="422.0" layoutY="182.0" onAction="#onIdentificacion" />
-      <Button fx:id="btnListVetDisponibles" layoutX="369.0" layoutY="315.0" mnemonicParsing="false" onAction="#onVisualizarListVetDisp" style="-fx-background-color: #82bcb4;" text="Visualizar lista veterinarios disponibles" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
       <Button fx:id="btnIngresar" layoutX="467.0" layoutY="222.0" mnemonicParsing="false" text="Ingresar" />
    </children>
 </AnchorPane>

@@ -3,6 +3,7 @@ package co.edu.uniquindio.poo.clinicavet.controller;
 import co.edu.uniquindio.poo.clinicavet.App;
 import co.edu.uniquindio.poo.clinicavet.model.Secretaria;
 import co.edu.uniquindio.poo.clinicavet.model.Veterinaria;
+import co.edu.uniquindio.poo.clinicavet.model.Veterinario;
 
 public class PrimaryController {
     private Veterinaria veterinaria;
@@ -18,15 +19,16 @@ public class PrimaryController {
     public boolean redireccionarSegunId(String id){
         Secretaria secretaria = veterinaria.buscarSecretaria(id);
         if(secretaria != null){
-            app.openCrudSecretaria();
+            app.openCrudSecretaria(secretaria);
             return true;
-            }
+        }
+        Veterinario veterinario = veterinaria.buscarVeterinario(id);
+        if(veterinario != null){
+            app.openCrudVeterinario(veterinario);
+            return true;
+        }
         return false;
     }
 
-    public boolean redireccionarListaVeterinarios(){
-        app.openCrudListaVeterinarios();
-        return true;
-    }
 
 }

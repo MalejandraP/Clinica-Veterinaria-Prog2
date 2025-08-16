@@ -30,15 +30,12 @@ public class PrimaryViewController {
     private URL location;
 
     @FXML
-    private Button btnListVetDisponibles, btnIngresar;
+    private Button  btnIngresar;
 
     @FXML
     private TextField txtIdentificacion;
 
-    @FXML
-    void onVisualizarListVetDisp (){
-        boolean redireccionarListaVeterinarios = primaryController.redireccionarListaVeterinarios();
-    }
+
     @FXML
     void onIngresarId (){
         String id = txtIdentificacion.getText();

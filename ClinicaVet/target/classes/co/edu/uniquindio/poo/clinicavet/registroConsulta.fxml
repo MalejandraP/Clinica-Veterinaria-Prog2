@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.clinicavet.RegistroConsulta">
+   <children>
+      <DatePicker layoutX="148.0" layoutY="150.0" prefHeight="25.0" prefWidth="128.0" />
+      <ComboBox layoutX="148.0" layoutY="93.0" prefWidth="150.0" />
+      <ComboBox layoutX="148.0" layoutY="210.0" prefHeight="25.0" prefWidth="128.0" />
+   </children>
+</AnchorPane>
