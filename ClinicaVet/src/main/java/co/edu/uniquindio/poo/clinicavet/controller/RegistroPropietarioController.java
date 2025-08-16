@@ -15,7 +15,7 @@ public class RegistroPropietarioController {
     }
 
     public boolean agregarPropietario(Propietario propietario) {
-        secretaria.
+        secretaria
     }
 
     public void setVeterinaria(Veterinaria veterinaria){
