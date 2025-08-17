@@ -19,6 +19,16 @@ public class VeterinarioController {
         veterinario.agregarConsulta(consulta);
         return true;
     }
+    public String obtenerIdCita(Veterinario veterinario, LocalDate fecha, Hora hora) {
+        List<Cita> citas = veterinaria.getListCitas();
+        String id = "non";
+        for (Cita cita : citas) {
+            if(cita.getVeterinario().equals(veterinario) && cita.getFecha().equals(fecha) && cita.getHora() == hora) {
+                id = cita.getId();
+            }
+        }
+        return id;
+    }
     public List<Hora> obtenerHorasVeterinario(String id, LocalDate newDate){
         return veterinaria.buscarVeterinarioOcupado(id, newDate);
     }

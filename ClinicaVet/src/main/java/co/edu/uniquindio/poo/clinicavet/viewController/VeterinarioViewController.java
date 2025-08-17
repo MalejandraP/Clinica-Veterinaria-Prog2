@@ -129,13 +129,20 @@ public class VeterinarioViewController {
 
     private void cargarEventos() {
         dtpFecha.valueProperty().addListener((obs, oldDate, newDate) -> {
-            // 👇 validamos null porque los setters llegan después del initialize
             if (newDate != null && veterinarioController != null && veterinario.getId() != null) {
                 List<Hora> horas = veterinarioController.obtenerHorasVeterinario(veterinario.getId(), newDate);
                 cbxHora.getItems().setAll(horas);
             }
         });
+        cbxHora.valueProperty().addListener((obs, oldValue, horaSeleccionada) -> {
+            actualizarId();
+        });
     }
+    private void actualizarId() {
+        lblIdCita.setText(veterinarioController.obtenerIdCita(veterinario, dtpFecha.getValue(), cbxHora.getValue()));
+        lblIdConsulta.setText(veterinarioController.obtenerIdCita(veterinario, dtpFecha.getValue(), cbxHora.getValue()));
+    }
+
 
     public void setVeterinario(Veterinario veterinario) {
         this.veterinario = veterinario;

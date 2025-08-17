@@ -106,14 +106,15 @@ public class RegistroCitaViewController {
     }
     private void cargarEventos() {
         dtpFecha.valueProperty().addListener((obs, oldDate, newDate) -> {
-            Veterinario vetSeleccionado = cbxVeterinario.getValue(); // lo que escogió el usuario
+            Veterinario vetSeleccionado = cbxVeterinario.getValue();
+            System.out.println("DEBUG - Seleccionado veterinario: " + vetSeleccionado);
             if (newDate != null && registroCitaController != null && vetSeleccionado != null) {
                 List<Hora> horas = registroCitaController.obtenerHorasVeterinario(vetSeleccionado.getId(), newDate);
+                System.out.println("DEBUG - Horas recibidas: " + horas);
                 cbxHora.getItems().setAll(horas);
             }
         });
 
-        // opcional: actualizar horas cuando cambie el veterinario
         cbxVeterinario.valueProperty().addListener((obs, oldVet, newVet) -> {
             LocalDate fechaSeleccionada = dtpFecha.getValue();
             if (newVet != null && fechaSeleccionada != null && registroCitaController != null) {
