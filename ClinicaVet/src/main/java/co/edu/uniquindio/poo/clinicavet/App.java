@@ -237,7 +237,7 @@ public class App extends Application {
         veterinaria.agregarVeterinario(veterinario4);
         veterinaria.agregarSecretaria(secretaria1);
         veterinaria.agregarMascota(mascota1);
-        veterinaria.agregarCita( cita1);
+        veterinaria.agregarCita(cita1);
         veterinaria.agregarTratamiento(tratamiento1);
         veterinaria.agregarTratamiento(tratamiento2);
         veterinaria.agregarTratamiento(tratamiento3);

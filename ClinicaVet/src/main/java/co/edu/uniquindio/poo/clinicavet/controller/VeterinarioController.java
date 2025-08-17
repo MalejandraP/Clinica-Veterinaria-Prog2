@@ -16,7 +16,7 @@ public class VeterinarioController {
         app.openViewPrincipal();
     }
     public boolean registrarConsulta(Consulta consulta){
-        veterinario.agregarConsulta(consulta);
+        veterinaria.agregarConsulta(consulta);
         return true;
     }
     public String obtenerIdCita(Veterinario veterinario, LocalDate fecha, Hora hora) {
